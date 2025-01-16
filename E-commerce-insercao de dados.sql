@@ -1,14 +1,14 @@
 -- Inserção de Dados para a Tabela Cliente
 INSERT INTO `mydb`.`Cliente` 
-(`Nome`, `CPF-CNPJ`, `Endereço`, `Status`, `Obs`, `Aniversátio`, `Inclusao`) 
+(`Nome`, `CPF_CNPJ`, `Endereço`, `Tipo_Pessoa`, `Ativo`, `Obs`, `Aniversátio`, `Inclusao`) 
 VALUES 
-('João Silva', 12345678901, 'Rua A, 123', 1, 'Nenhuma', '1990-05-15', '2025-01-15'), 
-('Maria Souza', 98765432100, 'Avenida B, 456', 1, 'Observação 1', '1985-08-25', '2025-01-15'), 
-('Empresa X Ltda', 12345678000195, 'Rua C, 789', 1, 'Cliente PJ', '2000-11-10', '2025-01-15'), 
-('Carlos Pereira', 23456789012, 'Praça D, 123', 1, 'Obs Carlos', '1982-02-10', '2025-01-15'), 
-('Ana Costa', 34567890123, 'Avenida E, 1000', 1, 'Nenhuma', '1995-07-20', '2025-01-15'), 
-('Beta Ltda', 65432198000102, 'Rua F, 200', 1, 'Obs Beta', '2010-12-30', '2025-01-15'), 
-('Francisco Lima', 45678901234, 'Rua G, 405', 1, 'Observação Francisco', '1988-09-05', '2025-01-15');
+('João Silva', 12345678901, 'Rua A, 123', 1, 1, 'Nenhuma', '1990-05-15', '2025-01-15'), 
+('Maria Souza', 98765432100, 'Avenida B, 456', 1, 1, 'Observação 1', '1985-08-25', '2025-01-15'), 
+('Empresa X Ltda', 12345678000195, 'Rua C, 789', 2, 1, 'Cliente PJ', '2000-11-10', '2025-01-15'), 
+('Carlos Pereira', 23456789012, 'Praça D, 123', 1, 1, 'Obs Carlos', '1982-02-10', '2025-01-15'), 
+('Ana Costa', 34567890123, 'Avenida E, 1000', 1, 1, 'Nenhuma', '1995-07-20', '2025-01-15'), 
+('Beta Ltda', 65432198000102, 'Rua F, 200', 0, 1, 'Obs Beta', '2010-12-30', '2025-01-15'), 
+('Francisco Lima', 45678901234, 'Rua G, 405', 1, 1, 'Observação Francisco', '1988-09-05', '2025-01-15');
 
 
 -- Inserção de Dados para a Tabela Produto
@@ -32,7 +32,7 @@ INSERT INTO `mydb`.`Fornecedor` (`Nome`, `CNPJ`, `Contato`, `Endereço`) VALUES
 ('Fornecedor G', 78901234000197, 'Contato G', 'Rua N, 900');
 
 -- Inserção de Dados para a Tabela Terceiros_Vendedor
-INSERT INTO `mydb`.`Terceiros_Vendedor` (`Razao Social`, `CNPJ`, `Local`, `Endereço`, `Contato`, `Tipo Pessoa`) VALUES
+INSERT INTO `mydb`.`Terceiros_Vendedor` (`Razao Social`, `CNPJ`, `Local`, `Endereço`, `Contato`, `Tipo_Pessoa`) VALUES
 ('Vendedor A Ltda', 12345678000195, 'São Paulo', 'Rua O, 100', 'Contato A', 1),
 ('Vendedor B Ltda', 23456789000123, 'Rio de Janeiro', 'Rua P, 200', 'Contato B', 1),
 ('Vendedor C Ltda', 34567890000102, 'Belo Horizonte', 'Rua Q, 300', 'Contato C', 1),
@@ -52,7 +52,7 @@ INSERT INTO `mydb`.`Produto_has_Fornecedor` (`Produto_idProduto`, `Fornecedor_id
 (7, 7);
 
 -- Inserção de Dados para a Tabela Produto_has_Terceiros_Vendedor
-INSERT INTO `mydb`.`Produto_has_Terceiros_Vendedor` (`Produto_idProduto`, `Terceiros-Vendedor_idTerceiros-Vendedor`, `Qtde`) VALUES
+INSERT INTO `mydb`.`Produto_has_Terceiros_Vendedor` (`Produto_idProduto`, `Terceiros_Vendedor_idTerceiros_Vendedor`, `Qtde`) VALUES
 (1, 1, 100),
 (2, 2, 200),
 (3, 3, 300),
@@ -82,7 +82,7 @@ INSERT INTO `mydb`.`Produto_has_Estoque` (`Produto_idProduto`, `Estoque_idEstoqu
 (7, 7);
 
 -- Inserção de Dados para a Tabela Pagamentos
-INSERT INTO `mydb`.`Pagamentos` (`Tipo`, `Numero Cartao`, `Nome Cartao`, `Vencimento`, `Status`, `Descricao`, `Apelido`, `Data Registro`, `CPF Titular`) VALUES
+INSERT INTO `mydb`.`Pagamentos` (`Tipo`, `Numero_Cartao`, `Nome_Cartao`, `Vencimento`, `Ativo`, `Descricao`, `Apelido`, `Data_Registro`, `CPF_Titular`) VALUES
 (1, '1234567812345678', 'João Silva', '2025-02-01', 1, 'Pagamento cartão', 'João', '2025-01-15', 12345678901),
 (2, NULL, NULL, '2025-03-01', 1, 'Pagamento boleto', 'Maria', '2025-01-15', 98765432100),
 (3, NULL, NULL, '2025-04-01', 1, 'Pagamento débito', 'Carlos', '2025-01-15', 23456789012),
@@ -102,7 +102,7 @@ INSERT INTO `mydb`.`Cliente_has_Pagamentos` (`Cliente_idCliente`, `Pagamentos_id
 (7, 7);
 
 -- Inserção de Dados para a Tabela Pedido
-INSERT INTO `mydb`.`Pedido` (`Cliente_idCliente`, `Status`, `Descrição`, `Frete`, `LocalEntrega`) VALUES
+INSERT INTO `mydb`.`Pedido` (`Cliente_idCliente`, `Ativo`, `Descrição`, `Frete`, `LocalEntrega`) VALUES
 (1, 1, 'Pedido 1', 10.0, 'Endereço 1'),
 (2, 2, 'Pedido 2', 20.0, 'Endereço 2'),
 (3, 1, 'Pedido 3', 30.0, 'Endereço 3'),
@@ -122,7 +122,7 @@ INSERT INTO `mydb`.`Pedido_has_Produto` (`Pedido_idPedido`, `Pedido_Cliente_idCl
 (7, 7, 7, 70, 'STU901');
 
 -- Inserção de Dados para a Tabela Pagamentos_has_Pedido
-INSERT INTO `mydb`.`Pagamentos_has_Pedido` (`Pagamentos_idPagamentos`, `Pedido_idPedido`, `Pedido_Cliente_idCliente`, `Status`) VALUES
+INSERT INTO `mydb`.`Pagamentos_has_Pedido` (`Pagamentos_idPagamentos`, `Pedido_idPedido`, `Pedido_Cliente_idCliente`, `Ativo`) VALUES
 (1, 1, 1, 1),
 (2, 2, 2, 2),
 (3, 3, 3, 3),
