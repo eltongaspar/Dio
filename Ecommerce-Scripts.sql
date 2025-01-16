@@ -46,7 +46,9 @@ select cli.idcliente,cli.nome,cli.cpf_cnpj,cli.endereço,
 	inner join cliente_has_pagamentos as clipag
 		on cli.idcliente = clipag.cliente_idcliente
 	inner join pagamentos as pag
-		on pag.idpagamentos = clipag.pagamentos_idpagamentos;
+		on pag.idpagamentos = clipag.pagamentos_idpagamentos
+where cli.ativo = 1
+order by cli.nome;
         
 -- Fornecedores x Prodtos 
 select * from fornecedor fornec
@@ -78,21 +80,37 @@ select * from estoque as est
 	left join Produto_has_Estoque as prod_est
 		on prod_est.estoque_idestoque = est.idestoque
 	left join produto as prod
-		on prod.idproduto = prod_est.produto_idproduto;
+		on prod.idproduto = prod_est.produto_idproduto
+ where est.qtde > 0;
+ 
+ SELECT 
+    prod.idproduto,
+    est.idestoque,
+    SUM(est.qtde) AS total_quantidade
+FROM estoque AS est
+LEFT JOIN Produto_has_Estoque AS prod_est
+    ON prod_est.estoque_idestoque = est.idestoque
+LEFT JOIN produto AS prod
+    ON prod.idproduto = prod_est.produto_idproduto
+WHERE est.qtde > 0
+GROUP BY prod.idproduto, est.idestoque
+HAVING COUNT(prod.idproduto) >= 1;
+
+
 
 -- Clientes que mais compraram 
 SELECT 
     c.Nome AS Cliente, 
-    c.`CPF-CNPJ`, 
+    c.`CPF_CNPJ`, 
     p.Nome AS Produto,
     pp.Qtde AS Quantidade_Vendida,
     p.Valor AS Valor_Unitario,
     (pp.Qtde * p.Valor) AS Valor_Total,
     pay.Tipo AS Tipo_Pagamento,
     pay.Descricao AS Descricao_Pagamento,
-    ped.Status AS Status_Pedido,
+    ped.Ativo AS Status_Pedido,
     ped.Frete AS Frete_Pedido,
-    pay.Status AS Status_Pagamento
+    pay.Ativo AS Status_Pagamento
 FROM 
     mydb.Cliente c
 JOIN 
@@ -106,7 +124,7 @@ JOIN
 JOIN 
     mydb.Pagamentos pay ON ppay.Pagamentos_idPagamentos = pay.idPagamentos
 WHERE 
-    ped.Status = 2 -- Filtra apenas os pedidos finalizados
+    ped.ativo = 2 -- Filtra apenas os pedidos finalizados
 ORDER BY 
     Valor_Total DESC
 LIMIT 10; -- Os 10 clientes que mais gastaram
