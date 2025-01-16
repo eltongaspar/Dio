@@ -187,3 +187,22 @@ VALUES
 (13, 13), -- idPecas 13, idEstoque 13
 (14, 14); -- idPecas 14, idEstoque 14
 
+-- Mecanico x Especialidades 
+INSERT INTO `Mecanicos_has_Especialidades` (`Mecanicos_idMecanicos`, `Especialidades_idEspecialidades`)
+VALUES
+(1, 1), -- Mecânico 1 possui especialidade 1
+(1, 2), -- Mecânico 1 possui especialidade 2
+(2, 3), -- Mecânico 2 possui especialidade 3
+(2, 4), -- Mecânico 2 possui especialidade 4
+(3, 5), -- Mecânico 3 possui especialidade 5
+(3, 6), -- Mecânico 3 possui especialidade 6
+(4, 7), -- Mecânico 4 possui especialidade 7
+(4, 8), -- Mecânico 4 possui especialidade 8
+(5, 9), -- Mecânico 5 possui especialidade 9
+(5, 10), -- Mecânico 5 possui especialidade 10
+(6, 11), -- Mecânico 6 possui especialidade 11
+(6, 12), -- Mecânico 6 possui especialidade 12
+(7, 13), -- Mecânico 7 possui especialidade 13
+(7, 14); -- Mecânico 7 possui especialidade 14
+
+
