@@ -150,3 +150,40 @@ VALUES
 (1, 1, 2, 150), (2, 2, 1, 350), (3, 3, 1, 190), (4, 4, 4, 230), (5, 5, 8, 330),
 (6, 6, 2, 440), (7, 7, 6, 201), (8, 8, 4, 378), (9, 9, 5, 401), (10, 10, 3, 150),
 (11, 11, 2, 250), (12, 12, 1, 500), (13, 13, 2, 777), (14, 14, 1, 140);
+
+-- Especialidades
+INSERT INTO `Especialidades` (`Descricao`)
+VALUES 
+('Revisão geral'),
+('Alinhamento e balanceamento'),
+('Pintura automotiva'),
+('Suspensão e amortecedores'),
+('Troca de pneus'),
+('Manutenção elétrica'),
+('Freios e discos'),
+('Ar condicionado'),
+('Troca de bateria'),
+('Faróis e iluminação'),
+('Diagnóstico eletrônico'),
+('Substituição de correias'),
+('Reparo de motor'),
+('Eletrônica automotiva');
+
+-- Estoque x PEcas 
+INSERT INTO `Pecas_has_Estoque` (`Pecas_idPecas`, `Estoque_idEstoque`)
+VALUES
+(1, 1),  -- idPecas 1, idEstoque 1
+(2, 2),  -- idPecas 2, idEstoque 2
+(3, 3),  -- idPecas 3, idEstoque 3
+(4, 4),  -- idPecas 4, idEstoque 4
+(5, 5),  -- idPecas 5, idEstoque 5
+(6, 6),  -- idPecas 6, idEstoque 6
+(7, 7),  -- idPecas 7, idEstoque 7
+(8, 8),  -- idPecas 8, idEstoque 8
+(9, 9),  -- idPecas 9, idEstoque 9
+(10, 10), -- idPecas 10, idEstoque 10
+(11, 11), -- idPecas 11, idEstoque 11
+(12, 12), -- idPecas 12, idEstoque 12
+(13, 13), -- idPecas 13, idEstoque 13
+(14, 14); -- idPecas 14, idEstoque 14
+
